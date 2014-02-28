@@ -9,7 +9,7 @@
         function(){
             return {
                 restrict: 'EA',
-                template: "<label for='{{formScope.id}}' class='btn btn-default'>Selecionar archivo</label><input type='file' class = 'hide' name='{{formScope.name}}[]' ng-model='files' id='{{formScope.id}}' enctype='multipart/form-data' multiple><input type='hidden' name='recipients[]' value='{{formScope.email}}' ng-model='model.email'><input type='hidden' name='subject' value='Sing Document' ng-model='model.email'>",
+                template: "<label for='{{formScope.id}}' class='btn btn-default'>Selecionar archivo</label><input type='file' class = 'hide' name='{{formScope.name}}[]' ng-model='files' id='{{formScope.id}}' enctype='multipart/form-data' multiple><input type='hidden' name='recipients[]' value='{{formScope.email}}' ng-model='model.email'><input type='hidden' name='subject' value='Sign Document' ng-model='model.email'>",
 
                 scope: {
                     ngJqueryFormAction:     '@',
@@ -44,8 +44,8 @@
                                             }
                                         }
                                     }
-                                })
-                            })
+                                });
+                            });
                         }
                     });
 
@@ -66,7 +66,7 @@
                     if ( $attrs.ngJqueryFormName ) {
                         $scope.formScope.name = $scope.ngJqueryFormName;
                     } else {
-                       $scope.formScope.name = "files"; 
+                       $scope.formScope.name = "files";
                     }
 
                     // miramos si esta el atributo definido y si lo esta lo lincamos 
