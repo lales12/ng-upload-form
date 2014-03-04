@@ -9,7 +9,7 @@
         function(){
             return {
                 restrict: 'EA',
-                template: "<label for='{{formScope.id}}' class='btn btn-default'>{{formScope.text}}</label><input type='file' class = 'hide' name='{{formScope.name}}[]' ng-model='files' id='{{formScope.id}}' enctype='multipart/form-data' multiple><input type='hidden' name='recipients[]' value='{{formScope.email}}' ng-model='model.email'><input type='hidden' name='subject' value='Sign Document' ng-model='model.email'>",
+                template: "<label for='{{formScope.id}}' class='btn btn-default'>{{formScope.inputContent}}</label><input type='file' class = 'hide' name='{{formScope.name}}[]' ng-model='files' id='{{formScope.id}}' enctype='multipart/form-data' multiple><input type='hidden' name='recipients[]' value='{{formScope.email}}' ng-model='model.email'><input type='hidden' name='subject' value='Sign Document' ng-model='model.email'>",
 
                 scope: {
                     ngJqueryFormAction:     '@',
@@ -23,7 +23,7 @@
                     ngJqueryFormSuccess:    '=',
                     ngJqueryFormHeader:     '=',
                     ngJqueryFormEmail:      '=',
-                    ngJqueryFormText:       '=' 
+                    ngJqueryFormText:       '='
                 },
 
                 link: function ($scope, $element, $attrs, $watch){
@@ -54,14 +54,14 @@
                     }
                     if ( $attrs.ngJqueryFormProgress ) {
                         $scope.ngJqueryFormProgress ;
-                    }   
+                    }   º
                     if ( $attrs.ngJqueryFormFiles ) {
                         $scope.ngJqueryFormFiles = [];
                     }
                     if ( $attrs.ngJqueryFormText ) {
-                        $scope.formScope.text = $scope.ngJqueryFormText;
+                        $scope.formScope.inputContent = $scope.ngJqueryFormText;
                     } else {
-                        $scope.formScope.text = 'Select file';
+                        $scope.formScope.inputContent = 'Select file';
                     }
                     if ( $attrs.ngJqueryFormId ) {
                         $scope.formScope.id = $scope.ngJqueryFormId;
