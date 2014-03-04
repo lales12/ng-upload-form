@@ -9,11 +9,12 @@
         function(){
             return {
                 restrict: 'EA',
-                template: "<label for='{{formScope.id}}' class='btn btn-default'>{{formScope.inputContent}}</label><input type='file' class = 'hide' name='{{formScope.name}}[]' ng-model='files' id='{{formScope.id}}' enctype='multipart/form-data' multiple><input type='hidden' name='recipients[]' value='{{formScope.email}}' ng-model='model.email'><input type='hidden' name='subject' value='Sign Document' ng-model='model.email'>",
+                template: "<label for='{{formScope.id}}' class='btn btn-default''>{{formScope.labelContent}}</label><input type='file' class = 'hide' name='{{formScope.name}}[]' ng-model='files' id='{{formScope.id}}' enctype='multipart/form-data' multiple><input type='hidden' name='recipients[]' value='{{formScope.email}}' ng-model='model.email'><input type='hidden' name='subject' value='Sign Document' ng-model='model.email'>",
 
                 scope: {
                     ngJqueryFormAction:     '@',
                     ngJqueryFormName:       '@',
+                    ngJqueryFormLabel:      '@',
                     ngJqueryFormId:         '@',
                     ngJqueryFormClear:      '=',
                     ngJqueryFormSend:       '=',
@@ -22,15 +23,14 @@
                     ngJqueryFormError:      '=',
                     ngJqueryFormSuccess:    '=',
                     ngJqueryFormHeader:     '=',
-                    ngJqueryFormEmail:      '=',
-                    ngJqueryFormText:       '='
+                    ngJqueryFormEmail:      '='
+                    
                 },
 
                 link: function ($scope, $element, $attrs, $watch){
                     var url, progress, writeError, writeSuccess, clearFiles;
 
                     $scope.formScope = {};
-
                     $element.change( function () {
                         if ( $attrs.ngJqueryFormFiles ) {
                             $scope.$apply(function() {
@@ -58,10 +58,11 @@
                     if ( $attrs.ngJqueryFormFiles ) {
                         $scope.ngJqueryFormFiles = [];
                     }
-                    if ( $attrs.ngJqueryFormText ) {
-                        $scope.formScope.inputContent = $scope.ngJqueryFormText;
+                    if ( $attrs.ngJqueryFormLabel ) {
+                        console.log($scope.ngJqueryFormLabel);
+                        $scope.formScope.labelContent = $scope.ngJqueryFormLabel;
                     } else {
-                        $scope.formScope.inputContent = 'Select file';
+                        $scope.formScope.labelContent = 'Select file';
                     }
                     if ( $attrs.ngJqueryFormId ) {
                         $scope.formScope.id = $scope.ngJqueryFormId;
