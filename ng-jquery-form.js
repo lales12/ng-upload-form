@@ -9,7 +9,7 @@
         function(){
             return {
                 restrict: 'EA',
-                template: "<label for='{{formScope.id}}' class='btn btn-default'>Selecionar archivo</label><input type='file' class = 'hide' name='{{formScope.name}}[]' ng-model='files' id='{{formScope.id}}' enctype='multipart/form-data' multiple><input type='hidden' name='recipients[]' value='{{formScope.email}}' ng-model='model.email'><input type='hidden' name='subject' value='Sign Document' ng-model='model.email'>",
+                template: "<label for='{{formScope.id}}' class='btn btn-default'>{{formScope.text}}</label><input type='file' class = 'hide' name='{{formScope.name}}[]' ng-model='files' id='{{formScope.id}}' enctype='multipart/form-data' multiple><input type='hidden' name='recipients[]' value='{{formScope.email}}' ng-model='model.email'><input type='hidden' name='subject' value='Sign Document' ng-model='model.email'>",
 
                 scope: {
                     ngJqueryFormAction:     '@',
@@ -22,7 +22,8 @@
                     ngJqueryFormError:      '=',
                     ngJqueryFormSuccess:    '=',
                     ngJqueryFormHeader:     '=',
-                    ngJqueryFormEmail:      '='
+                    ngJqueryFormEmail:      '=',
+                    ngJqueryFormText:       '=' 
                 },
 
                 link: function ($scope, $element, $attrs, $watch){
@@ -57,6 +58,11 @@
                     if ( $attrs.ngJqueryFormFiles ) {
                         $scope.ngJqueryFormFiles = [];
                     }
+                    if ( $attrs.ngJqueryFormText ) {
+                        $scope.formScope.text = $scope.ngJqueryFormText;
+                    } else {
+                        $scope.formScope.text = 'Select file';
+                    }
                     if ( $attrs.ngJqueryFormId ) {
                         $scope.formScope.id = $scope.ngJqueryFormId;
                     } else {
@@ -87,8 +93,7 @@
                                                 return true;
                                             },
                                             uploadProgress: function (event, position, total, percentComplete) {
-                                                progress(percentComplete)
-                                                
+                                                progress(percentComplete);
                                             },
                                             success: function (response, status) {
                                                 writeSuccess(response, status);
