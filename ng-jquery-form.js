@@ -58,7 +58,6 @@
                         $scope.ngJqueryFormFiles = [];
                     }
                     if ( $attrs.ngJqueryFormLabel ) {
-                        console.log($scope.ngJqueryFormLabel);
                         $scope.formScope.labelContent = $scope.ngJqueryFormLabel;
                     } else {
                         $scope.formScope.labelContent = 'Select file';
