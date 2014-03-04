@@ -53,7 +53,7 @@
                     }
                     if ( $attrs.ngJqueryFormProgress ) {
                         $scope.ngJqueryFormProgress ;
-                    }   º
+                    }
                     if ( $attrs.ngJqueryFormFiles ) {
                         $scope.ngJqueryFormFiles = [];
                     }
