@@ -34,7 +34,6 @@
                         if ( $attrs.ngJqueryFormFiles ) {
                             $scope.$apply(function() {
                                 angular.forEach($element.formToArray(), function (file) {
-                                    console.log(file);
                                     if ( file.type ===  "file" ) {
                                         if ( file.value.type === "application/pdf" ) { 
                                             $scope.ngJqueryFormFiles.push(file.value);
@@ -88,10 +87,6 @@
                                                 return true;
                                             },
                                             uploadProgress: function (event, position, total, percentComplete) {
-                                                console.log("el progress es");
-                                                console.log(total);
-                                                console.log(position);
-                                                console.log(percentComplete);
                                                 progress(percentComplete)
                                                 
                                             },
@@ -128,7 +123,6 @@
                     progress = function (percentComplete) {
                         $scope.$apply(function () {
                             $scope.ngJqueryFormProgress = percentComplete;
-                            console.log($scope.ngJqueryFormProgress);
                         })
                     };
 
