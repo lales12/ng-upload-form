@@ -24,7 +24,6 @@
                     ngJqueryFormSuccess:    '=',
                     ngJqueryFormHeader:     '=',
                     ngJqueryFormEmail:      '='
-                    
                 },
 
                 link: function ($scope, $element, $attrs, $watch){
