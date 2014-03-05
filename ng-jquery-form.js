@@ -33,6 +33,7 @@
                     $element.change( function () {
                         if ( $attrs.ngJqueryFormFiles ) {
                             $scope.$apply(function() {
+                                $scope.ngJqueryFormFiles = [];
                                 angular.forEach($element.formToArray(), function (file) {
                                     if ( file.type ===  "file" ) {
                                         if ( file.value.type === "application/pdf" ) { 
@@ -96,9 +97,11 @@
                                             },
                                             success: function (response, status) {
                                                 writeSuccess(response, status);
+                                                progress(false);
                                             },
                                             error: function (response, status) {
-                                                writeError(response, status);
+                                                writeError(status, response);
+                                                progress(false);
                                             }
                                         });
                                         $element.submit();
