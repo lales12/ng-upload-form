@@ -9,13 +9,14 @@
         function(){
             return {
                 restrict: 'EA',
-                template: "<label for='{{formScope.id}}' class='btn btn-default''>{{formScope.labelContent}}</label><input type='file' class = 'hide' name='{{formScope.name}}[]' ng-model='files' id='{{formScope.id}}' enctype='multipart/form-data' multiple><input type='hidden' name='recipients[]' value='{{formScope.email}}' ng-model='model.email'><input type='hidden' name='subject' value='Sign Document' ng-model='model.email'>",
+                template: "<label for='{{formScope.id}}' class='btn btn-default''>{{formScope.labelContent}}</label><input type='file' class = 'hide' name='{{formScope.name}}[]' ng-model='files' id='{{formScope.id}}' enctype='multipart/form-data' multiple><input type='hidden' name='recipients[]' value='{{formScope.email}}' ng-model='model.email'><input type='hidden' name='subject' value='{{formScope.subject}}' ng-model='model.email'>",
 
                 scope: {
                     ngJqueryFormAction:     '@',
                     ngJqueryFormName:       '@',
                     ngJqueryFormLabel:      '@',
                     ngJqueryFormId:         '@',
+                    ngJqueryFormSubject:    "@",
                     ngJqueryFormClear:      '=',
                     ngJqueryFormSend:       '=',
                     ngJqueryFormFiles:      '=',
@@ -24,6 +25,7 @@
                     ngJqueryFormSuccess:    '=',
                     ngJqueryFormHeader:     '=',
                     ngJqueryFormEmail:      '='
+
                 },
 
                 link: function ($scope, $element, $attrs, $watch){
@@ -63,6 +65,11 @@
                     } else {
                         $scope.formScope.labelContent = 'Select file';
                     }
+                    if ( $attrs.ngJqueryFormSubject ) {
+                        $scope.formScope.subject = $scope.ngJqueryFormSubject;
+                    } else {
+                        $scope.formScope.subject = "Sign request";
+                    }
                     if ( $attrs.ngJqueryFormId ) {
                         $scope.formScope.id = $scope.ngJqueryFormId;
                     } else {
@@ -79,10 +86,11 @@
                     if ( $attrs.ngJqueryFormSend ) {
                         $scope.ngJqueryFormSend = function () {
                             if ( $attrs.ngJqueryFormEmail ) {
-                                $scope.ngJqueryFormProgress = true;
+
                                 $scope.formScope.email = $scope.ngJqueryFormEmail;
 
                                 if ( $scope.formScope.email !== "" && $scope.ngJqueryFormFiles.length > 0) {
+                                    $scope.ngJqueryFormProgress = true;
                                     setTimeout(function (){
                                         $element.ajaxForm({
                                             url: url,
@@ -109,9 +117,9 @@
                                 } else {
                                     if( $attrs.ngJqueryFormError ) {
                                         if($scope.ngJqueryFormFiles.length === 0){
-                                            $scope.ngJqueryFormError('', {'code' : 405});
+                                            $scope.ngJqueryFormError('', {'status' : 405});
                                         } else {
-                                            $scope.ngJqueryFormError('', {'code' : 404});
+                                            $scope.ngJqueryFormError('', {'status' : 404});
                                         }
                                     }
                                 }
