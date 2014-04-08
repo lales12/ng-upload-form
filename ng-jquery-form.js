@@ -38,13 +38,9 @@
                                 $scope.ngJqueryFormFiles = [];
                                 angular.forEach($element.formToArray(), function (file) {
                                     if ( file.type ===  "file" ) {
-                                        if ( file.value.type === "application/pdf" ) { 
-                                            $scope.ngJqueryFormFiles.push(file.value);
-                                        } else {
-                                            if( $attrs.ngJqueryFormError ) {
-                                                $scope.ngJqueryFormError('', {'code' : -601});
-                                            }
-                                        }
+
+                                        $scope.ngJqueryFormFiles.push(file.value);
+
                                     }
                                 });
                             });
